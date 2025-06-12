@@ -7,8 +7,10 @@ int validate_args(int argc, char**argv)
 		ft_error("ERROR: Invalid Arguments\n", 1);
 		return (0);
 	}
-	if (!argv[1] || !argv[2] || !argv[3] || !argv[4])
+	if (!argv[2][0] || !argv[3][0] )
 	{
-		ft_error("ERROR: Invalid Arguments\n, 1");
+		ft_error("ERROR: Invalid Command\n", 1);
+		return (0);
 	}
+	return (1);
 }
