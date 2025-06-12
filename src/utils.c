@@ -6,14 +6,6 @@ void	ft_putstr(char *s)
 		write(1, s, ft_strlen(s));
 }
 
-void	ft_error(char *msg, int flag)
-{
-	ft_putstr(msg);
-	close(STDIN_FILENO);
-	close(STDOUT_FILENO);
-	exit(flag);
-}
-
 int	ft_strlen(const char *s)
 {
 	const char *i = s;

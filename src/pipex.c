@@ -35,5 +35,11 @@ void	ft_pipex(char **argv, char **envp)
 	ft_memset(&data, 0, sizeof(t_pipex));
 	data.paths = get_paths(envp);
 	data.cmd1 = parse_cmd(argv[2]);
-	data.cmd1 = parse_cmd(argv[3]);
+	data.cmd2 = parse_cmd(argv[3]);
+	if (!data.paths || !data.cmd1 || !data.cmd2)
+	{
+		free_data(&data);
+		is_error("Error parsing cmd or paths", 1, 0);
+	}
+	create_pipe(&data);
 }

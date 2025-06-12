@@ -26,7 +26,9 @@ int		ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
 void	ft_putstr(char *s);
-void	ft_error(char *msg, int flag);
+void	is_error(char *msg, int exit_code, int close_std);
 void	ft_pipex(char **argv, char **envp);
+void	free_array(char **array);
 void	*ft_memset(void *s, int c, size_t n);
+
 #endif
