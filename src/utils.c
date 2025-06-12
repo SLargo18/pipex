@@ -1,5 +1,11 @@
 #include "../include/pipex.h"
 
+void	ft_putstr(char *s)
+{
+	if(s)
+		write(1, s, ft_strlen(s));
+}
+
 void	ft_error(char *msg, int flag)
 {
 	ft_putstr(msg);
@@ -8,11 +14,11 @@ void	ft_error(char *msg, int flag)
 	exit(flag);
 }
 
-int	ft_strlen(char *s)
+int	ft_strlen(const char *s)
 {
-	char *i = s;
+	const char *i = s;
 
-	if (!(*s))
+	if (!s)
 		return (0);
 	while (*s)
 		s++;

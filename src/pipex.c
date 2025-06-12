@@ -1,5 +1,15 @@
 #include "../include/pipex.h"
 
+char	**parse_cmd(char *cmd)
+{
+	char	**cmd_ok;
+
+	if(!cmd)
+		return (NULL);
+	cmd_ok = ft_split(cmd, ' ');
+	return(cmd_ok);
+}
+
 char **get_paths(char **envp)
 {
 	int		i;
@@ -24,4 +34,6 @@ void	ft_pipex(char **argv, char **envp)
 
 	ft_memset(&data, 0, sizeof(t_pipex));
 	data.paths = get_paths(envp);
+	data.cmd1 = parse_cmd(argv[2]);
+	data.cmd1 = parse_cmd(argv[3]);
 }

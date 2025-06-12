@@ -21,10 +21,12 @@ typedef	struct s_pipex
 	pid_t	pid2;
 }	t_pipex;
 
-int		ft_strlen(char *s);
+int		ft_strlen(const char *s);
 int		ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
+void	ft_putstr(char *s);
 void	ft_error(char *msg, int flag);
+void	ft_pipex(char **argv, char **envp);
 void	*ft_memset(void *s, int c, size_t n);
 #endif
