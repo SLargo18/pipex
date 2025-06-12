@@ -18,4 +18,6 @@ typedef	struct s_pipex
 	pid_t	pid2;
 }	t_pipex;
 
+void	ft_error(char *msg, int flag);
+
 #endif
