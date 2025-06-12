@@ -42,4 +42,5 @@ void	ft_pipex(char **argv, char **envp)
 		is_error("Error parsing cmd or paths", 1, 0);
 	}
 	create_pipe(&data);
+	
 }

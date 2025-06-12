@@ -13,7 +13,7 @@ typedef	struct s_pipex
 {
 	int		infle;
 	int		outfile;
-	int		pipefd[2];
+	int		pipefd[2]; //para la entra y salida o sea leer y escribir 
 	char	**paths;
 	char	**cmd1;
 	char	**cmd2;
@@ -29,6 +29,7 @@ void	ft_putstr(char *s);
 void	is_error(char *msg, int exit_code, int close_std);
 void	ft_pipex(char **argv, char **envp);
 void	free_array(char **array);
+void	create_pipe(t_pipex *data);
 void	*ft_memset(void *s, int c, size_t n);
 
 #endif
