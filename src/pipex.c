@@ -16,7 +16,6 @@ char	**parse_cmd(char *cmd)
 {
 	char	**cmd_ok;
 
-	printf("entra en parse_cmd\n");
 	if(!cmd)
 		return (NULL);
 	cmd_ok = ft_split(cmd, ' ');
@@ -31,13 +30,9 @@ char **get_paths(char **envp)
 	i = 0;
 	while(envp[i])
 	{
-		printf("entra en getpath3\n");
-
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
-			printf("entra en strncmp \n ");
 			paths = ft_split(envp[i] + 5, ':');
-			//printf("PATH found: %s\n", envp[i] + 5);
 			return (paths);
 		}
 		i++;
@@ -47,8 +42,6 @@ char **get_paths(char **envp)
 
 void	ft_pipex(char **argv, char **envp)
 {
-	printf("entraaaaa\n");
-
 	t_pipex data;
 
 	ft_memset(&data, 0, sizeof(t_pipex));

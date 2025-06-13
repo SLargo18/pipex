@@ -4,6 +4,7 @@ static	void	second_child(t_pipex *data, char **argv, char **envp)
 {
 	child2(data, argv);
 	execute_cmd(data->paths, data->cmd2, envp);
+	exit(0);
 }
 
 static	void	first_child(t_pipex *data, char **argv, char **envp)
@@ -12,6 +13,7 @@ static	void	first_child(t_pipex *data, char **argv, char **envp)
 	child1(data, argv);
 	fprintf(stderr, "➡️ Llegó a X lugar\n");
 	execute_cmd(data->paths, data->cmd1, envp);
+	exit(0);
 }
 
 static	void	open_file(t_pipex *data, char **argv)
@@ -19,7 +21,7 @@ static	void	open_file(t_pipex *data, char **argv)
 	printf("abre\n");
 	data->infile = open(argv[1], O_RDONLY);
 	if(data->infile == -1)
-		is_error("Cannot open infile", 1, 0);
+		perror("Cannot open infile");
 	data->outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data->outfile == -1)
 		is_error("Cannot create outputfile", 1, 0);
@@ -39,6 +41,8 @@ void	create_processes(t_pipex *data, char **argv, char **envp)
 		is_error("Fork failed", 1, 0);
 	if (data->pid2 == 0)
 		second_child(data, argv, envp);
+	close(data->pipefd[0]);
+	close(data->pipefd[1]);
 }
 
 void	create_pipe(t_pipex *data)

@@ -7,7 +7,6 @@ char	*find_cmp_p(char **paths, char *cmd)
 	char	*temp;
 
 	i = 0;
-	printf("entra aqui= find_cmd");
 	if (!paths || !cmd)
 		return(NULL);
 	if (ft_strchr(cmd, '/'))
@@ -51,7 +50,10 @@ void	child1(t_pipex *data, char **argv)
 	printf("entra en child\n");
 	close(data->pipefd[0]);
 	if (data->infile == -1)
+	{
+		close(data->pipefd[1]);
 		is_error("Cannot open input file", 1, 0);
+	}
 	printf("infile %d\n", data->infile);
 	if (dup2(data->infile, STDIN_FILENO) == -1
 		|| (dup2(data->pipefd[1], STDOUT_FILENO) == -1))
