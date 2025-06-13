@@ -48,10 +48,7 @@ void	child1(t_pipex *data, char **argv)
 {
 	close(data->pipefd[0]);
 	if (data->infile == -1)
-	{
-		printf ("entr?\n");
 		is_error("Cannot open input file", 1, 0);
-	}
 	if (dup2(data->infile, STDIN_FILENO) == -1
 		|| (dup2(data->pipefd[1], STDOUT_FILENO) == -1))
 		is_error ("dup2 failed", 1, 0);

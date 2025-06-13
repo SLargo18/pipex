@@ -14,15 +14,12 @@ static	void	first_child(t_pipex *data, char **argv, char **envp)
 
 static	void	open_file(t_pipex *data, char **argv)
 {
-	printf ("enasdasdr?\n");
 	data->infile = open(argv[1], O_RDONLY);
 	if(data->infile == -1)
-		is_error("Cannot open infile aaa", 1, 0);
+		is_error("Cannot open infile", 1, 0);
 	data->outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data->outfile == -1)
-	{
 		is_error("Cannot create outputfile", 1, 0);
-	}
 }
 
 void	create_processes(t_pipex *data, char **argv, char **envp)
@@ -42,7 +39,6 @@ void	create_processes(t_pipex *data, char **argv, char **envp)
 
 void	create_pipe(t_pipex *data)
 {
-	printf ("eaaa\n");
 	if(pipe(data->pipefd) == -1)
 		is_error("Pipe creation failed", 1, 0);
 }
