@@ -1,0 +1,5 @@
+juan 20
+ana 18
+marcos 22
+
+./a.out infile "cut -d ' ' -f1" "sort" outfile
