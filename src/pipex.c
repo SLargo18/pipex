@@ -53,7 +53,6 @@ void	ft_pipex(char **argv, char **envp)
 		free_data(&data);
 		is_error("Error parsing cmd or paths", 1, 0);
 	}
-	printf("entra en pipex, despues de parse cmd\n");
 	create_pipe(&data);
 	create_processes(&data, argv, envp);
 	wait_processes(&data);

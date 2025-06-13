@@ -42,7 +42,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	printf("entra aca memset\n ");
 	size_t			i;
 	unsigned char	*ptr;
 
