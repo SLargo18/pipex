@@ -24,7 +24,12 @@ typedef	struct s_pipex
 int		ft_strlen(const char *s);
 int		ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strdup(const char *s);
+char	*ft_strchr(const char *s, int c);
 char	**ft_split(char const *s, char c);
+char	*find_cmp_p(char **paths, char *cmd);
+char	*ft_strcpy(char *dest, const char *src);
+char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putstr(char *s);
 void	is_error(char *msg, int exit_code, int close_std);
 void	ft_pipex(char **argv, char **envp);

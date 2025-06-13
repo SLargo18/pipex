@@ -15,18 +15,7 @@ void	create_processes(t_pipex *data, char **argv, char **envp)
 	if (data->pid1 == 0)
 		first_child(data, argv, envp);
 	data->pid2 = fork();
-}
-
-void	child1(t_pipex *data, char **argv)
-{
-	close(data->pipefd[0]);
-	if (data->infile == -1)
-		is_error("Cannot open input file", 1, 0);
-	if (dup2(data->infile, STDIN_FILENO) == -1
-		|| (dup2(data->pipefd[1], STDIN_FILENO) == -1))
-		is_error ("dup2 failed", 1, 0);
-	close(data->infile);
-	close(data->pipefd[1]);
+	
 }
 
 void	first_child(t_pipex *data, char **argv, char **envp)
