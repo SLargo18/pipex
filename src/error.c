@@ -5,13 +5,14 @@ void	is_error(char *msg, int exit_code, int close_std)
 	perror(msg);
 	if (close_std)
 	{
+		printf ("sapaaa?\n");
 		close(STDIN_FILENO);
 		close(STDOUT_FILENO);
 	}
 	exit(exit_code);
 }
 
-void	free_array(char **array)
+static void	free_array(char **array)
 {
 	int	i;
 

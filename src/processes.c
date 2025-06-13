@@ -1,32 +1,31 @@
 #include "../include/pipex.h"
 
-void	open_file(t_pipex *data, char **argv)
+char	*find_cmp_p(char **paths, char *cmd)
 {
-	data->infile = open(argv[1], O_RDONLY);
-	if(data->infile == -1)
-	{
-		perror(argv[1]);
-		is_error("Cannot open infile", 1, 0);
+	int		i;
+	char	*path;
+	char	*temp;
 
-	}
-	data->outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (data->outfile == -1)
+	i = 0;
+	if (!paths || !cmd)
+		return(NULL);
+	if (ft_strchr(cmd, '/'))
+		return (ft_strdup(cmd));
+	while (paths[i])
 	{
-		perror(argv[4]);
-		is_error("Cannot create outputfile", 1, 0);
+		temp = ft_strjoin(paths[i], "/");
+		if (!temp)
+			return (NULL);
+		path = ft_strjoin(temp, cmd);
+		free(temp);
+		if(!path)
+			return (NULL);
+		if (access(path, X_OK) == 0)
+			return (path);
+		free(path);
+		i++;
 	}
-}
-
-void	child1(t_pipex *data, char **argv)
-{
-	close(data->pipefd[0]);
-	if (data->infile == -1)
-		is_error("Cannot open input file", 1, 0);
-	if (dup2(data->infile, STDIN_FILENO) == -1
-		|| (dup2(data->pipefd[1], STDIN_FILENO) == -1))
-		is_error ("dup2 failed", 1, 0);
-	close(data->infile);
-	close(data->pipefd[1]);
+	return (NULL);
 }
 
 void	execute_cmd(char **paths, char **cmd, char **envp)
@@ -43,4 +42,29 @@ void	execute_cmd(char **paths, char **cmd, char **envp)
 			free(cmd_p);
 			is_error("Execution failed", 127, 1);
 		}
+}
+
+void	child1(t_pipex *data, char **argv)
+{
+	close(data->pipefd[0]);
+	if (data->infile == -1)
+	{
+		printf ("entr?\n");
+		is_error("Cannot open input file", 1, 0);
+	}
+	if (dup2(data->infile, STDIN_FILENO) == -1
+		|| (dup2(data->pipefd[1], STDOUT_FILENO) == -1))
+		is_error ("dup2 failed", 1, 0);
+	close(data->infile);
+	close(data->pipefd[1]);
+}
+
+void	child2(t_pipex *data, char **argv)
+{
+	close(data->pipefd[1]);
+	if (dup2(data->pipefd[0], STDIN_FILENO) == -1
+		|| (dup2(data->outfile, STDOUT_FILENO) == -1))
+		is_error("dup2 failed", 1, 0);
+	close(data->pipefd[0]);
+	close(data->outfile);
 }

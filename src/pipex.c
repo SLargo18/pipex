@@ -27,7 +27,6 @@ char **get_paths(char **envp)
 	}
 	return (NULL);
 }
-
 void	ft_pipex(char **argv, char **envp)
 {
 	t_pipex data;
@@ -42,5 +41,24 @@ void	ft_pipex(char **argv, char **envp)
 		is_error("Error parsing cmd or paths", 1, 0);
 	}
 	create_pipe(&data);
-	creat_processes(&data, argv, envp);
+	create_processes(&data, argv, envp);
 }
+	
+int	validate_args(int argc, char**argv)
+{
+	if (argc != 5)
+	{
+		printf ("entra?");
+		is_error("ERROR1: Invalid Arguments\n", 1, 1);
+		return (0);
+	}
+	if (!argv[1] || !argv[2] || !argv[3] || !argv[4])
+		return (0);
+	if (!argv[2][0] || !argv[3][0] )
+	{
+		is_error("ERROR2: Invalid Command\n", 1, 1);
+		return (0);
+	}
+	return (1);
+}
+
