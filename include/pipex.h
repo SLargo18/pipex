@@ -33,7 +33,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putstr(char *s);
 void	free_data(t_pipex *data);
 void	create_pipe(t_pipex *data);
-//void	wait_processes(t_pipex *data);
+void	wait_processes(t_pipex *data);
 void	ft_pipex(char **argv, char **envp);
 void	child1(t_pipex *data, char **argv);
 void	child2(t_pipex *data, char **argv);

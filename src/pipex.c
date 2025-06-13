@@ -1,5 +1,17 @@
 #include "../include/pipex.h"
 
+void	wait_processes(t_pipex *data)
+{
+	int	status;
+
+	waitpid(data->pid1, &status, 0);
+	waitpid(data->pid2, &status, 0);
+	if(data->infile != -1)
+		close(data->infile);
+	if(data->outfile != -1)
+		close(data->outfile);
+}
+
 char	**parse_cmd(char *cmd)
 {
 	char	**cmd_ok;
@@ -51,7 +63,8 @@ void	ft_pipex(char **argv, char **envp)
 	printf("entra en pipex, despues de parse cmd\n");
 	create_pipe(&data);
 	create_processes(&data, argv, envp);
-	//wait_processes(&data);
+	wait_processes(&data);
+	free_data(&data);
 }
 	
 int	validate_args(int argc, char**argv)

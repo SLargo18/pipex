@@ -47,15 +47,3 @@ void	create_pipe(t_pipex *data)
 	if(pipe(data->pipefd) == -1)
 		is_error("Pipe creation failed", 1, 0);
 }
-
-// void	wait_processes(t_pipex *data)
-// {
-// 	int	status;
-
-// 	waitpid(data->pid1, &status, 0);
-// 	waitpid(data->pid2, &status, 0);
-// 	if(data->infile != -1)
-// 		close(data->infile);
-// 	if(data->outfile != -1)
-// 		close(data->outfile);
-// }
