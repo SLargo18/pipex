@@ -7,6 +7,7 @@ char	*find_cmp_p(char **paths, char *cmd)
 	char	*temp;
 
 	i = 0;
+	printf("entra aqui= find_cmd");
 	if (!paths || !cmd)
 		return(NULL);
 	if (ft_strchr(cmd, '/'))
@@ -37,6 +38,7 @@ void	execute_cmd(char **paths, char **cmd, char **envp)
 	cmd_p = find_cmp_p(paths, cmd[0]);
 	if (!cmd_p)
 		is_error("Command not found", 127, 1);
+	fprintf(stderr, "➡️ Llegó \n");
 	if (execve(cmd_p, cmd, envp) == -1)
 		{
 			free(cmd_p);
@@ -46,22 +48,33 @@ void	execute_cmd(char **paths, char **cmd, char **envp)
 
 void	child1(t_pipex *data, char **argv)
 {
+	printf("entra en child\n");
 	close(data->pipefd[0]);
 	if (data->infile == -1)
 		is_error("Cannot open input file", 1, 0);
-	if (dup2(data->infile, STDIN_FILENO) == -1
-		|| (dup2(data->pipefd[1], STDOUT_FILENO) == -1))
+	printf("infile %d\n", data->infile);
+	if (dup2(data->infile, STDIN_FILENO) == -1 || (dup2(data->pipefd[1], STDOUT_FILENO) == -1))
+	{
+		printf("entra???");
 		is_error ("dup2 failed", 1, 0);
+	}
+	printf("quedó redireccionado");
+	fprintf(stderr, "➡️ Llegó a X lugar\n");
 	close(data->infile);
 	close(data->pipefd[1]);
+
+	printf("cerro todo");
 }
 
 void	child2(t_pipex *data, char **argv)
 {
+	fprintf(stderr, "➡️ Llegó a X lugar\n");
 	close(data->pipefd[1]);
+	fprintf(stderr, "➡️ Llegó a X lugasdaar\n");
 	if (dup2(data->pipefd[0], STDIN_FILENO) == -1
 		|| (dup2(data->outfile, STDOUT_FILENO) == -1))
 		is_error("dup2 failed", 1, 0);
+	fprintf(stderr, "➡️ Llegó a X lugooooooar\n");
 	close(data->pipefd[0]);
 	close(data->outfile);
 }

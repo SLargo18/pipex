@@ -4,6 +4,7 @@ char	**parse_cmd(char *cmd)
 {
 	char	**cmd_ok;
 
+	printf("entra en parse_cmd\n");
 	if(!cmd)
 		return (NULL);
 	cmd_ok = ft_split(cmd, ' ');
@@ -18,17 +19,24 @@ char **get_paths(char **envp)
 	i = 0;
 	while(envp[i])
 	{
+		printf("entra en getpath3\n");
+
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
+			printf("entra en strncmp \n ");
 			paths = ft_split(envp[i] + 5, ':');
+			//printf("PATH found: %s\n", envp[i] + 5);
 			return (paths);
 		}
 		i++;
 	}
 	return (NULL);
 }
+
 void	ft_pipex(char **argv, char **envp)
 {
+	printf("entraaaaa\n");
+
 	t_pipex data;
 
 	ft_memset(&data, 0, sizeof(t_pipex));
@@ -40,8 +48,10 @@ void	ft_pipex(char **argv, char **envp)
 		free_data(&data);
 		is_error("Error parsing cmd or paths", 1, 0);
 	}
+	printf("entra en pipex, despues de parse cmd\n");
 	create_pipe(&data);
 	create_processes(&data, argv, envp);
+	//wait_processes(&data);
 }
 	
 int	validate_args(int argc, char**argv)
