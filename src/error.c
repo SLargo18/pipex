@@ -1,8 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/16 12:18:33 by slargo-b          #+#    #+#             */
+/*   Updated: 2025/06/16 12:18:34 by slargo-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/pipex.h"
 
 void	is_error(char *msg, int exit_code, int close_std)
 {
-	perror(msg);
+	int	i;
+
+	i = 0;
+	while (msg[i])
+	{
+		write (2, &msg[i], 1);
+		i++;
+	}
 	if (close_std)
 	{
 		close(STDIN_FILENO);

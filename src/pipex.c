@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/16 12:18:38 by slargo-b          #+#    #+#             */
+/*   Updated: 2025/06/16 12:18:39 by slargo-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/pipex.h"
 
 void	wait_processes(t_pipex *data)
@@ -48,10 +60,10 @@ void	ft_pipex(char **argv, char **envp)
 	data.paths = get_paths(envp);
 	data.cmd1 = parse_cmd(argv[2]);
 	data.cmd2 = parse_cmd(argv[3]);
-	if (!data.paths || !data.cmd1 || !data.cmd2)
+	if (!data.paths && (argv[2][0] != '/' || argv[3][0] != '/'))
 	{
 		free_data(&data);
-		is_error("Error parsing cmd or paths", 1, 0);
+		is_error("Error parsing cmd or paths\n", 1, 0);
 	}
 	create_pipe(&data);
 	create_processes(&data, argv, envp);

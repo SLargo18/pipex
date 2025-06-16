@@ -1,7 +1,7 @@
 NAME = pipex
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-DEBUG_FLAGS = -g3 -fsanitize=address
+DEBUG_FLAGS = -g3 
 INCLUDES = -I./include
 SRC_DIR = src
 OBJ_DIR = obj
