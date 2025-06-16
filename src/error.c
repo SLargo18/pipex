@@ -14,7 +14,14 @@
 
 void	is_error(char *msg, int exit_code, int close_std)
 {
-	perror(msg);
+	int	i;
+
+	i = 0;
+	while (msg[i])
+	{
+		write (2, &msg[i], 1);
+		i++;
+	}
 	if (close_std)
 	{
 		close(STDIN_FILENO);
