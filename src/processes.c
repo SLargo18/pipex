@@ -49,8 +49,8 @@ void	execute_cmd(char **paths, char **cmd, char **envp)
 	if (ft_strchr(cmd[0], '/'))
 	{
 		cmd_p = ft_strdup(cmd[0]);
-		if (!cmd_p)
-			is_error("Command not found\n", 127, 1);
+			if (!cmd_p)
+				is_error("Command not found\n", 127, 1);
 	}
 	else
 	{

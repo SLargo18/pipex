@@ -25,7 +25,7 @@ typedef struct s_pipex
 {
 	int		infile;
 	int		outfile;
-	int		pipefd[2]; //para la entra y salida o sea leer y escribir 
+	int		pipefd[2];
 	char	**paths;
 	char	**cmd1;
 	char	**cmd2;
