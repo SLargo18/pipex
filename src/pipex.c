@@ -6,9 +6,9 @@ void	wait_processes(t_pipex *data)
 
 	waitpid(data->pid1, &status, 0);
 	waitpid(data->pid2, &status, 0);
-	if(data->infile != -1)
+	if (data->infile != -1)
 		close(data->infile);
-	if(data->outfile != -1)
+	if (data->outfile != -1)
 		close(data->outfile);
 }
 
@@ -16,19 +16,19 @@ char	**parse_cmd(char *cmd)
 {
 	char	**cmd_ok;
 
-	if(!cmd)
+	if (!cmd)
 		return (NULL);
 	cmd_ok = ft_split(cmd, ' ');
-	return(cmd_ok);
+	return (cmd_ok);
 }
 
-char **get_paths(char **envp)
+char	**get_paths(char **envp)
 {
 	int		i;
 	char	**paths;
 
 	i = 0;
-	while(envp[i])
+	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
@@ -42,7 +42,7 @@ char **get_paths(char **envp)
 
 void	ft_pipex(char **argv, char **envp)
 {
-	t_pipex data;
+	t_pipex	data;
 
 	ft_memset(&data, 0, sizeof(t_pipex));
 	data.paths = get_paths(envp);
@@ -58,7 +58,7 @@ void	ft_pipex(char **argv, char **envp)
 	wait_processes(&data);
 	free_data(&data);
 }
-	
+
 int	validate_args(int argc, char**argv)
 {
 	if (argc != 5)
@@ -68,11 +68,10 @@ int	validate_args(int argc, char**argv)
 	}
 	if (!argv[1] || !argv[2] || !argv[3] || !argv[4])
 		return (0);
-	if (!argv[2][0] || !argv[3][0] )
+	if (!argv[2][0] || !argv[3][0])
 	{
 		is_error("ERROR: Invalid Command\n", 1, 1);
 		return (0);
 	}
 	return (1);
 }
-

@@ -1,13 +1,14 @@
 #include "../include/pipex.h"
+
 void	ft_putstr(char *s)
 {
-	if(s)
+	if (s)
 		write(1, s, ft_strlen(s));
 }
 
 int	ft_strlen(const char *s)
 {
-	const char *i = s;
+	const char	*i = s;
 
 	if (!s)
 		return (0);

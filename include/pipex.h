@@ -1,4 +1,4 @@
-#ifndef	PIPEX_H
+#ifndef PIPEX_H
 # define PIPEX_H
 
 # include <unistd.h>
@@ -9,7 +9,7 @@
 # include <errno.h>
 # include <string.h>
 
-typedef	struct s_pipex
+typedef struct s_pipex
 {
 	int		infile;
 	int		outfile;
@@ -35,8 +35,8 @@ void	free_data(t_pipex *data);
 void	create_pipe(t_pipex *data);
 void	wait_processes(t_pipex *data);
 void	ft_pipex(char **argv, char **envp);
-void	child1(t_pipex *data, char **argv);
-void	child2(t_pipex *data, char **argv);
+void	child1(t_pipex *data);
+void	child2(t_pipex *data);
 void	is_error(char *msg, int exit_code, int close_std);
 void	execute_cmd(char **paths, char **cmd, char **envp);
 void	create_processes(t_pipex *data, char **argv, char **envp);

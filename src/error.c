@@ -16,9 +16,9 @@ static void	free_array(char **array)
 	int	i;
 
 	i = 0;
-	if(!array)
+	if (!array)
 		return ;
-	while(array[i])
+	while (array[i])
 		free(array[i++]);
 	free(array);
 }
@@ -32,4 +32,3 @@ void	free_data(t_pipex *data)
 	if (data->cmd2)
 		free_array(data->cmd2);
 }
-
